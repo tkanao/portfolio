@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('book/create', 'Admin\BookController@add');
+    Route::get('book/edit', 'Admin\BookController@edit');
+    Route::Post('book/edit', 'Admin\BookController@update');
+    Route::get('book/index', 'Admin\BookController@index');
+});
