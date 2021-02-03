@@ -1,0 +1,14 @@
+.container{
+    /*background-color: red;*/
+}
+
+
+.clear_box {
+    clear: both;
+    height: 400px;
+}
+
+.btn {
+    display: block;
+    margin: 0 0 0 auto;
+}
