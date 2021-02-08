@@ -1,1 +1,9 @@
-// CSSを記述
+.clear_box {
+    clear: both;
+    height: 400px;
+}
+
+.btn {
+    display: block;
+    margin: 0 0 0 auto;
+}

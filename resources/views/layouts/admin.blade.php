@@ -37,13 +37,35 @@
                     </button>
                     <a class="navbar-brand" href="#">家計簿</a>
                     <div class="collapse navbar-collapse justify-content-end">
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="#">編集画面へ</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">一覧へ</a>
                             </li>
+                            @guest
+                                <li><a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a></li>
+                            {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
+    
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('messages.Logout') }}
+                                        </a>
+    
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                                @endguest
                         </ul>
                     </div>
                 </div>
