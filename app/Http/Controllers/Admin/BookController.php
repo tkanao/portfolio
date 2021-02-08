@@ -4,12 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// CalendarViewを追加
+use App\Calendar\CalendarView;
 
 class BookController extends Controller
 {
     public function add() {
-        return view('admin.book.create');
+    // CalendarViewを追加
+        $calendar = new CalendarView(time());
+        
+        return view('admin.book.create', [
+            "calendar" => $calendar
+            ]);
     }
+
     
     public function create() {
         return redirect('admin/book/create');
@@ -26,4 +34,5 @@ class BookController extends Controller
     public function index() {
         return view('admin.book.index');
     }
+    
 }
