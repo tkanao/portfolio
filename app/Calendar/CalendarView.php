@@ -31,6 +31,23 @@ class CalendarView {
         $html[] = '<th>土</th>';
         $html[] = '</tr>';
         $html[] = '</thead>';
+        
+        $html[] = '<tbody>';
+        
+        $weeks = $this->getWeeks();
+        foreach($weeks as $week){
+            $html[] = '<tr class="'.$week->getClassName().'">';
+            $days = $week->getDays();
+            foreach($days as $day){
+                $html[] = '<td class="'.$day->getClassName().'">';
+                $html[] = $day->render();
+                $html[] = '</td>';
+            }
+            $html[] = '</tr>';
+        }
+        
+        $html[] = '</tbody>';
+        
         $html[] = '</table>';
         $html[] = '</div>';
         
@@ -50,7 +67,9 @@ class CalendarView {
         // １週目
         $week = new CalendarWeek($firstDay->copy());
         $weeks[] = $week;
-        
+
+        // 週の始めを日曜日に設定
+        Carbon::setWeekStartsAt(Carbon::SUNDAY);
         // 作業用の日
         $tmpDay = $firstDay->copy()->addDay(7)->startOfWeek();
         

@@ -21,9 +21,13 @@ class CalendarWeek {
         
         $days = [];
         
+        // 週の最初を日曜日に設定
+        Carbon::setWeekStartsAt(Carbon::SUNDAY);
+        // 週の最後を土曜日に設定
+        Carbon::setWeekEndsAt(Carbon::SATURDAY);
         // 開始日〜終了日
         $startDay = $this->carbon->copy()->startOfWeek();
-        $lastDay = $this->carbon->copy()-endOfWeek();
+        $lastDay = $this->carbon->copy()->endOfWeek();
         
         // 作業用
         $tmpDay = $startDay->copy();
