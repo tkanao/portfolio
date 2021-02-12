@@ -11,7 +11,7 @@
 }
 .calendar table td {
     padding: 3px;
-    border: solid 1px #999;
+    border: solid 1px #999 !important;
 }
 .calendar table td:before {
     display: block;
@@ -25,5 +25,18 @@
 }
 .calendar table th {
     text-align: center;
-    border: solid 1px #999;
+    border: solid 1px #999 !important;
+}
+
+.card-header {
+    text-align: center;
+}
+
+.holiday {
+    color: red;
+    font-weight: bold;
+}
+
+.today {
+    background-color: orange;
 }

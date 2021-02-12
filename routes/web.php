@@ -17,8 +17,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('book/edit', 'Admin\BookController@edit');
     Route::Post('book/edit', 'Admin\BookController@update');
     Route::get('book/index', 'Admin\BookController@index');
-    // Route::get('book/create', 'Admin\BookController@show');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

@@ -2,6 +2,8 @@
 namespace App\Calendar;
 
 use Carbon\Carbon;
+// Yasumiを使う
+use Yasumi\Yasumi;
 
 class CalendarView {
     private $carbon;
@@ -14,9 +16,30 @@ class CalendarView {
     public function getTitle(){
         return $this->carbon->format('Y年 n月');
     }
+            
+    // 次の月
+    public function getNextMonth(){
+        return $this->carbon->copy()->addMonthsNoOverflow()->format('Y-m');
+    }
     
+    // 前の月
+    public function getPreviousMonth(){
+        return $this->carbon->copy()->subMonthsNoOverflow()->format('Y-m');
+    }
+    
+    // 祝日を取得する関数を作成
+	function loadHoliday($year){
+		$this->holidays = Yasumi::create("Japan", $year,"ja_JP");
+	}
+
+	function isHoliday($date){
+		if(!$this->holidays)return false;
+		return $this->holidays->isHoliday($date);
+	}
+
     // カレンダーを出力
     function render(){
+        // カレンダーのテーブル
         $html = [];
         $html[] = '<div class="calendar">';
         $html[] = '<table class="table">';
@@ -35,13 +58,19 @@ class CalendarView {
         $html[] = '<tbody>';
         
         $weeks = $this->getWeeks();
+        
+        $today = new Carbon();
         foreach($weeks as $week){
             $html[] = '<tr class="'.$week->getClassName().'">';
             $days = $week->getDays();
+            
             foreach($days as $day){
+                if ($today == $day){
+                    $html[] = '<td class="today">';
+                }else{
                 $html[] = '<td class="'.$day->getClassName().'">';
                 $html[] = $day->render();
-                $html[] = '</td>';
+                $html[] = '</td>';}
             }
             $html[] = '</tr>';
         }
@@ -85,4 +114,7 @@ class CalendarView {
         
         return $weeks;
     }
+    
+	
+
 }

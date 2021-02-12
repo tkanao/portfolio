@@ -20,7 +20,6 @@ class CalendarWeek {
     function getDays(){
         
         $days = [];
-        
         // 週の最初を日曜日に設定
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         // 週の最後を土曜日に設定

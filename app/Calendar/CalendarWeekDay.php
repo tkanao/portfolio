@@ -12,7 +12,6 @@ class CalendarWeekDay {
     function getClassName(){
         return "day-" . strtolower($this->carbon->format("D"));
     }
-    
     function render(){
         return '<p class="day">' . $this->carbon->format("j"). '</p>';
     }

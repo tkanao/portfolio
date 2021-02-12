@@ -7,15 +7,30 @@ use App\Http\Controllers\Controller;
 // CalendarViewを追加
 use App\Calendar\CalendarView;
 
+
 class BookController extends Controller
 {
-    public function add() {
+    public function add(Request $request) {
     // CalendarViewを追加
-        $calendar = new CalendarView(time());
-        
-        return view('admin.book.create', [
-            "calendar" => $calendar
-            ]);
+    // クエリーのdateを受け取る
+    $date = $request->input("date");
+    
+    //dateがYYY-MMの型式かどうか判定する
+    if($date && preg_match("/^[0-9]{4}-[0-9]{2}$/", $date)){
+        $date = strtotime($date . "-01");
+    }else{
+        $date = null;
+    }
+    // 取得できない時は現在を指定する
+    if(!$date)$date = time();
+    
+    // カレンダーに渡す
+    $calendar = new CalendarView($date);
+    
+    return view('admin.book.create', [
+        "calendar" => $calendar
+    ]);
+
     }
 
     
