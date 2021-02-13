@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Calendar\CalendarView;
 
 
-class BookController extends Controller
+class CalendarController extends Controller
 {
     public function add(Request $request) {
     // CalendarViewを追加
@@ -33,21 +33,4 @@ class BookController extends Controller
 
     }
 
-    
-    public function create() {
-        return redirect('admin/book/create');
-    }
-    
-    public function edit() {
-        return view('admin.book.edit');
-    }
-    
-    public function update() {
-        return redirect('admin/book/edit');
-    }
-    
-    public function index() {
-        return view('admin.book.index');
-    }
-    
 }

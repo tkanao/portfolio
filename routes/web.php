@@ -11,12 +11,13 @@
 |
 */
 
-// CalendarControllerを表示する
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-    Route::get('book/create', 'Admin\BookController@add');
-    Route::get('book/edit', 'Admin\BookController@edit');
-    Route::Post('book/edit', 'Admin\BookController@update');
-    Route::get('book/index', 'Admin\BookController@index');
+    // CalendarControllerの設定
+    Route::get('book/create', 'Admin\CalendarController@add');
+    // AccountControllerの設定
+    Route::get('book/edit', 'Admin\AccountController@edit');
+    Route::Post('book/edit', 'Admin\AccountController@update');
+    Route::get('book/index', 'Admin\AccountController@index');
 });
 
 Auth::routes();
