@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-5 mt-5 ml-5"><h4>日付</h4></div>
                     <div class="col-md-10 mx-auto">
-                        <input type="text" class="form-control" name="date">
+                        <input type="date" class="form-control" name="date">
                     </div>
                 </div>
                 <br>
@@ -36,10 +36,10 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <label><input type="radio" name="balance" value="income">収入</input></label>
+                                                <label><input type="radio" name="transaction_id" value="income">収入</label>
                                             </div>
                                             <div>
-                                                <label><input type="radio" name="balance" value="outcome">支出</label>
+                                                <label><input type="radio" name="transaction_id" value="outcome">支出</label>
                                             </div>
                                         </td>
                                         <td>

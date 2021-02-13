@@ -147,9 +147,9 @@ return [
 
     'attributes' => [
             'amount' => '金額欄',
-            'transaction_type' => '収支欄',
+            'transaction_id' => '収支欄',
             'memo' => '項目',
-            'created_at' => '日付',
+            'date' => '日付',
         ],
 
 ];

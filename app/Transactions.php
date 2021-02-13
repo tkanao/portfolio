@@ -10,8 +10,8 @@ class Transactions extends Model
     
     public static $rules = array(
             'amount' => 'required',
-            'transaction_type' => 'required',
+            'transaction_id' => 'required',
             'memo' => 'required',
-            'created_at' => 'required',
+            'date' => 'required',
         );
 }
