@@ -4,14 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transactions extends Model
+class Transaction extends Model
 {
     protected $guarded = array('id');
     
     public static $rules = array(
             'amount' => 'required',
-            'transaction_id' => 'required',
+            'transaction_type' => 'required',
             'memo' => 'required',
             'date' => 'required',
+            // 'account_id' => 'required',
+            // 'balance' => 'required'
         );
 }

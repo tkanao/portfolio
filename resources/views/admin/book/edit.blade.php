@@ -36,10 +36,10 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <label><input type="radio" name="transaction_id" value="income">収入</label>
+                                                <label><input type="radio" name="transaction_type" value="income">収入</label>
                                             </div>
                                             <div>
-                                                <label><input type="radio" name="transaction_id" value="outcome">支出</label>
+                                                <label><input type="radio" name="transaction_type" value="outcome">支出</label>
                                             </div>
                                         </td>
                                         <td>

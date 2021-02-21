@@ -6,12 +6,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="float-right border p-2 col-4">今月は10000円です</div>
+                    <div class="float-right border p-2 col-4">貯蓄額{{ $account->balance }}</div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="float-right border p-2 col-4">現在の資産残高は167800円です</div>
+                    <div class="float-right border p-2 col-4">今月の収支</div>
                 </div>
             </div>
             <div class="row justify-content-center">

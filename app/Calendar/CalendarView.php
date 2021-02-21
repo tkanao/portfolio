@@ -29,6 +29,7 @@ class CalendarView {
     
     // 祝日を取得する関数を作成
 	function loadHoliday($year){
+	    $year = $startday->format('Y');
 		$this->holidays = Yasumi::create("Japan", $year,"ja_JP");
 	}
 
