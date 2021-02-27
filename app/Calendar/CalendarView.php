@@ -4,6 +4,7 @@ namespace App\Calendar;
 use Carbon\Carbon;
 // Yasumiを使う
 use Yasumi\Yasumi;
+use App\Transaction;
 
 class CalendarView {
     private $carbon;
@@ -27,17 +28,6 @@ class CalendarView {
         return $this->carbon->copy()->subMonthsNoOverflow()->format('Y-m');
     }
     
-    // 祝日を取得する関数を作成
-	function loadHoliday($year){
-	    $year = $startday->format('Y');
-		$this->holidays = Yasumi::create("Japan", $year,"ja_JP");
-	}
-
-	function isHoliday($date){
-		if(!$this->holidays)return false;
-		return $this->holidays->isHoliday($date);
-	}
-
     // カレンダーを出力
     function render(){
         // カレンダーのテーブル
@@ -60,19 +50,27 @@ class CalendarView {
         
         $weeks = $this->getWeeks();
         
-        $today = new Carbon();
         foreach($weeks as $week){
             $html[] = '<tr class="'.$week->getClassName().'">';
             $days = $week->getDays();
             
             foreach($days as $day){
-                if ($today == $day){
-                    $html[] = '<td class="today">';
-                }else{
                 $html[] = '<td class="'.$day->getClassName().'">';
+                
+                $target = $this->carbon->format('Y-m-d');
+                $transaction = Transaction::where('date', $target)->get();
                 $html[] = $day->render();
+                
+                // 収支のデータをカレンダーに表示する
+                foreach($transaction as $t) {
+                    if (optional($t->date == $target)) {
+                        $html[] = $t->memo;
+                        $html[] = '<br>';
+                        $html[] = $t->amount;
+                    }
+                }
+                
                 $html[] = '</td>';}
-            }
             $html[] = '</tr>';
         }
         

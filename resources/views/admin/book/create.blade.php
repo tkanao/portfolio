@@ -6,12 +6,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="float-right border p-2 col-4">貯蓄額{{ $account->balance }}</div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="float-right border p-2 col-4">今月の収支</div>
+                    <div class="col-4 float-right">
+                    <table border="1" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="40%">貯蓄額</td>
+                                <td width="60%">{{ $account->balance }}</td>
+                            </tr>
+                            <tr>
+                                <td>今月の収支</td>
+                                <td>{{ $transaction_monthly }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
                 </div>
             </div>
             <div class="row justify-content-center">

@@ -2,6 +2,9 @@
 namespace App\Calendar;
 
 use Carbon\Carbon;
+use App\Transaction;
+use Yasumi\Yasumi;
+
 
 class CalendarWeek {
     
@@ -44,6 +47,35 @@ class CalendarWeek {
             
             // 今月
             $day = new CalendarWeekDay($tmpDay->copy());
+            
+                // $transaction = Transaction::where('date', 'like', $day . '%')->get();
+
+                // foreach($transaction as $t) {
+                //     if (optional($t->date == $day)) {
+                //         $html[] = $t->amount;
+                //         $html[] = $t->memo;
+                //         break;
+                //     }
+                // }
+            
+            
+            // $transaction = Transaction::where('date', 'like', $day . '%')->get();
+
+            // foreach($transaction as $t) {
+            //     $t->amount;
+            //     $t->memo;
+            // }
+
+
+            // // 収支の情報を表示
+            // foreach($transaction as $t) {
+            //     if (optional($t->date == $day)) {
+            //         $t->amount;
+            //         $t->memo;
+            //         break;
+            //     }
+            // }
+            
             $days[] = $day;
             // 翌日に移動
             $tmpDay->addDay(1);

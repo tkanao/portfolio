@@ -39,10 +39,13 @@
                     <div class="collapse navbar-collapse justify-content-end">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="edit">編集画面へ</a>
+                                <a class="nav-link" href="create">カレンダーへ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="index">一覧へ</a>
+                                <a class="nav-link" href="edit">登録画面へ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index">収支一覧へ</a>
                             </li>
                             @guest
                                 <li><a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a></li>

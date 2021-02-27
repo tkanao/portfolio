@@ -1,16 +1,38 @@
 <?php
 namespace App\Calendar;
 use Carbon\Carbon;
+use Yasumi\Yasumi;
 
 class CalendarWeekDay {
     protected $carbon;
+    private $holidays = null;
+    protected $isHoliday = false;
     
     function __construct($date){
         $this->carbon = new Carbon($date);
+        $year = $this->carbon->format("Y");
+        $this->holidays = Yasumi::create("Japan", $year, "ja_JP");
+    }
+    
+    // 祝日の読み込み
+    function isHoliday($date){
+        if(!$this->holidays)return false;
+        return $this->holidays->isHoliday($date);
     }
     
     function getClassName(){
-        return "day-" . strtolower($this->carbon->format("D"));
+        $classNames = [ "day-" . strtolower($this->carbon->format("D")) ];
+        // 祝日ならばholidayを与える
+        if($this->isHoliday($this->carbon)){
+            $classNames[] = "holiday";
+        }
+        // 今日ならばtodayを与える
+        if ($this->carbon->isToday()){
+            $classNames[] = "today";
+        }
+        
+    
+       return implode(" ", $classNames);
     }
     function render(){
         return '<p class="day">' . $this->carbon->format("j"). '</p>';

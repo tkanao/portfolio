@@ -41,10 +41,19 @@ class AccountController extends Controller
     }
     
     public function index(Request $request) {
-        // 更新された収支の情報をindexで表示する
-        $posts = Transaction::all();
-
-        return view('admin.book.index', ['posts' => $posts]);
+        $cond_date = $request->cond_date;
+        if($cond_date != '') {
+        //検索されたら検索結果を表示する
+            $posts = Transaction::where('date', 'like', $cond_date . '%')->get();
+            $monthly_total = Transaction::where('date', 'like', $cond_date . '%')
+                            ->orderBy('created_at')->get()
+                            ->pluck('amount')->sum();
+        } else {
+        // それ以外は全てを表示
+            $posts = Transaction::all();
+            $monthly_total = Transaction::all()->pluck('amount')->sum();
+        }
+        return view('admin.book.index', ['posts' => $posts, 'cond_date' => $cond_date, 'monthly_total' => $monthly_total]);
     }
     
 
