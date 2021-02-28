@@ -17,7 +17,6 @@ class CalendarController extends Controller
     public function add(Request $request) {
     // クエリーのdateを受け取る
     $date = $request->input("date");
-
     // 取得できない時は現在を指定する
     if(!$date)$date = date('Y-m', strtotime('now'));
 

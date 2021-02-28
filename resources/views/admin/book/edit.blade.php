@@ -12,15 +12,14 @@
                 @endif
                 @csrf
                 <div class="row">
-                    <div class="col-md-5 mt-5 ml-5"><h4>日付</h4></div>
-                    <div class="col-md-10 mx-auto">
+                    <div class="col-md-12 text-center mt-5"><h4>収支の入力</h4></div><br>
+                    <div class="col-md-10 mx-auto mt-3">
                         <input type="date" class="form-control" name="date">
                     </div>
                 </div>
                 <br>
                 <div class="row text-center">
-                    <div class="col-8 mx-auto">
-                        <div class="row">
+                    <div class="col-md-10 mx-auto">
                             <table border="1" width="100%">
                                 <thead>
                                     <tr>
@@ -32,28 +31,27 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control" name="memo">
+                                            <input type="text" style="border:none" class="form-control" name="memo">
                                         </td>
                                         <td>
-                                            <div>
+                                            <div class="pt-2">
                                                 <label><input type="radio" name="transaction_type" value="income">収入</label>
                                             </div>
-                                            <div>
+                                            <div class="p-1">
                                                 <label><input type="radio" name="transaction_type" value="outcome">支出</label>
                                             </div>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" name="amount">
+                                            <input type="text" style="border:none" class="form-control" name="amount">円
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
                     </div>
                 </div>
                 <br>
                 <!--{{ csrf_field() }}-->
-                <input type="submit" class="btn btn-primary float-right" value="更新">
+                <input type="submit" class="btn btn-primary float-right" value="入力">
             </form>
         </div>
 @endsection

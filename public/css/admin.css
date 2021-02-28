@@ -1,3 +1,7 @@
+body {
+    background-color: #EEFFFF !important;
+}
+
 .day-blank {
     background-color: #efefef;
 }
@@ -38,5 +42,45 @@
 }
 
 .today {
-    background-color: orange;
+    background-color: #FFC7AF;
+}
+
+.balance table td {
+    border: solid 2px #999;
+    text-align: center !important;
+    height: 50px;
+}
+
+table {
+    background-color: white;
+}
+
+.index table tbody td {
+    height: 40px;
+}
+
+.index table tfoot td {
+    height: 60px;
+}
+
+.income {
+    color: #004400;
+}
+
+.outcome {
+    color: red;
+}
+
+.total table td {
+    height: 70px;
+}
+
+.font {
+    color: black;
+    font-weight: 500;
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 30px;
 }

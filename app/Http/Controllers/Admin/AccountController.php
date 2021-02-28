@@ -20,14 +20,13 @@ class AccountController extends Controller
         // アカウントを作成
         $account = Account::where('user_id', Auth::User()->id)->first();
         
-        
         $transaction = new Transaction;
         $form = $request->all();
         unset($form['_token']);
         $transaction->fill($form);
         $transaction->account_id = $account->id;
         
-        // 収支を表示
+        // 支出ならマイナスにする
         if($transaction->transaction_type == 'outcome'){
             $transaction->amount = - $transaction->amount;}
         
@@ -44,16 +43,33 @@ class AccountController extends Controller
         $cond_date = $request->cond_date;
         if($cond_date != '') {
         //検索されたら検索結果を表示する
-            $posts = Transaction::where('date', 'like', $cond_date . '%')->get();
+            $posts = Transaction::where('date', 'like', $cond_date . '%')->orderBy('created_at')->get();
+            unset($posts['_token']);
+            
+            $monthly_income = Transaction::where('date', 'like', $cond_date . '%')
+                            ->where('transaction_type', 'income')
+                            ->orderBy('created_at')->get()
+                            ->pluck('amount')->sum();
+                            
+            $monthly_outcome = Transaction::where('date', 'like', $cond_date . '%')
+                            ->where('transaction_type', 'outcome')
+                            ->orderBy('created_at')->get()
+                            ->pluck('amount')->sum();
+                            
             $monthly_total = Transaction::where('date', 'like', $cond_date . '%')
                             ->orderBy('created_at')->get()
                             ->pluck('amount')->sum();
+                           
         } else {
-        // それ以外は全てを表示
-            $posts = Transaction::all();
-            $monthly_total = Transaction::all()->pluck('amount')->sum();
+        // それ以外は表示しない
+            $posts = null;
+            $monthly_total = null;
+            $monthly_income = null;
+            $monthly_outcome = null;
+        //     // $posts = Transaction::all();
+        //     // $monthly_total = Transaction::all()->pluck('amount')->sum();
         }
-        return view('admin.book.index', ['posts' => $posts, 'cond_date' => $cond_date, 'monthly_total' => $monthly_total]);
+        return view('admin.book.index', ['posts' => $posts, 'cond_date' => $cond_date, 'monthly_total' => $monthly_total, 'monthly_income' => $monthly_income, 'monthly_outcome' => $monthly_outcome]);
     }
     
 

@@ -57,19 +57,18 @@ class CalendarView {
             foreach($days as $day){
                 $html[] = '<td class="'.$day->getClassName().'">';
                 
-                $target = $this->carbon->format('Y-m-d');
-                $transaction = Transaction::where('date', $target)->get();
                 $html[] = $day->render();
-                
-                // 収支のデータをカレンダーに表示する
-                foreach($transaction as $t) {
-                    if (optional($t->date == $target)) {
-                        $html[] = $t->memo;
-                        $html[] = '<br>';
-                        $html[] = $t->amount;
+            
+                    if(is_a($day, 'CalendarWeekDay')){
+                        // 収支のデータを取得
+                        $transactions = Transaction::where('date', 'LIKE', "%{$day}%")->get();
+                        // 収支のデータをカレンダーに表示する
+                        foreach($transactions as $transaction) {
+                            if ($transaction->date == $day) {
+                                $html[] = $transaction->amount;
+                            }
+                        }
                     }
-                }
-                
                 $html[] = '</td>';}
             $html[] = '</tr>';
         }

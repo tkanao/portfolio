@@ -47,40 +47,21 @@ class CalendarWeek {
             
             // 今月
             $day = new CalendarWeekDay($tmpDay->copy());
-            
-                // $transaction = Transaction::where('date', 'like', $day . '%')->get();
-
-                // foreach($transaction as $t) {
-                //     if (optional($t->date == $day)) {
-                //         $html[] = $t->amount;
-                //         $html[] = $t->memo;
-                //         break;
-                //     }
-                // }
-            
-            
-            // $transaction = Transaction::where('date', 'like', $day . '%')->get();
-
-            // foreach($transaction as $t) {
-            //     $t->amount;
-            //     $t->memo;
-            // }
-
-
-            // // 収支の情報を表示
+            // $transaction = Transaction::where('date', $day)->get();
+            // // 収支のデータをカレンダーに表示する
             // foreach($transaction as $t) {
             //     if (optional($t->date == $day)) {
-            //         $t->amount;
-            //         $t->memo;
-            //         break;
+            //         $html[] = $t->memo;
+            //         $html[] = '<br>';
+            //         $html[] = $t->amount;
             //     }
             // }
-            
             $days[] = $day;
             // 翌日に移動
             $tmpDay->addDay(1);
         }
         
         return $days;
+        
     }
 }
