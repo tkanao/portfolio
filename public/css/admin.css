@@ -16,24 +16,31 @@ body {
 .calendar table td {
     padding: 3px;
     border: solid 1px #999 !important;
+    white-space: nowrap;
 }
 .calendar table td:before {
     display: block;
     float: left;
-    height: 100px;
+    height: 110px !important;
     content: "";
 }
 
 .calendar table td .day {
     margin-bottom: 0;
 }
+
+.calendar table td .amount {
+    display: block;
+    text-align: center;
+    font-size: 1.6vw;
+    margin-top: 10px;
+    padding:10px;
+}
+
 .calendar table th {
     text-align: center;
     border: solid 1px #999 !important;
-}
-
-.card-header {
-    text-align: center;
+    width: 14% !important;
 }
 
 .holiday {
@@ -83,4 +90,5 @@ table {
 .card-header {
     font-weight: bold;
     font-size: 30px;
+    text-align: center;
 }

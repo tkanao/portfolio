@@ -42,7 +42,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <input type="text" style="border:none" class="form-control" name="amount">円
+                                            <input type="text" style="border:none" class="form-control" name="amount"　width="80%"><span>円</span>
                                         </td>
                                     </tr>
                                 </tbody>

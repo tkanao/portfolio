@@ -5,6 +5,7 @@ use Carbon\Carbon;
 // Yasumiを使う
 use Yasumi\Yasumi;
 use App\Transaction;
+use App\Calendar\CalendarWeekDay;
 
 class CalendarView {
     private $carbon;
@@ -33,16 +34,16 @@ class CalendarView {
         // カレンダーのテーブル
         $html = [];
         $html[] = '<div class="calendar">';
-        $html[] = '<table class="table">';
+        $html[] = '<table class="table" width="100%">';
         $html[] = '<thead>';
         $html[] = '<tr>';
-        $html[] = '<th>日</th>';
-        $html[] = '<th>月</th>';
-        $html[] = '<th>火</th>';
-        $html[] = '<th>水</th>';
-        $html[] = '<th>木</th>';
-        $html[] = '<th>金</th>';
-        $html[] = '<th>土</th>';
+        $html[] = '<th width="14%">日</th>';
+        $html[] = '<th width="14%">月</th>';
+        $html[] = '<th width="14%">火</th>';
+        $html[] = '<th width="14%">水</th>';
+        $html[] = '<th width="14%">木</th>';
+        $html[] = '<th width="14%">金</th>';
+        $html[] = '<th width="14%">土</th>';
         $html[] = '</tr>';
         $html[] = '</thead>';
         
@@ -56,19 +57,64 @@ class CalendarView {
             
             foreach($days as $day){
                 $html[] = '<td class="'.$day->getClassName().'">';
-                
+                // カレンダーの日付を表示する
                 $html[] = $day->render();
-            
-                    if(is_a($day, 'CalendarWeekDay')){
-                        // 収支のデータを取得
-                        $transactions = Transaction::where('date', 'LIKE', "%{$day}%")->get();
-                        // 収支のデータをカレンダーに表示する
-                        foreach($transactions as $transaction) {
-                            if ($transaction->date == $day) {
-                                $html[] = $transaction->amount;
+                
+                    $html[] = '<div class="amount">';
+                        // $dayがBlanckdayでなければ収支を表示する
+                        if(get_class($day) == 'App\Calendar\CalendarWeekDay'){
+                            // カレンダーと同じ日のカラムを取得する
+                            // $transactions = Transaction::where('date', $day->getDay())->get();
+                            // 収支のデータをカレンダーに表示する
+                            $day_incomes = Transaction::where('date', $day->getDay())
+                                ->where('transaction_type', 'income')
+                                ->orderBy('created_at')->get()
+                                ->pluck('amount')->sum();
+
+                            $day_outcomes = Transaction::where('date', $day->getDay())
+                                ->where('transaction_type', 'outcome')
+                                ->orderBy('created_at')->get()
+                                ->pluck('amount')->sum();
+                            
+                            foreach((array)$day_incomes as $day_income) {
+                                if ($day_income !== 0) {
+                                $html[] = '<div class="income">';
+                                $html[] = $day_income. "円";
+                                $html[] = '</div>';}
                             }
+                            
+                            foreach((array)$day_outcomes as $day_outcome) {
+                                if ($day_outcome !== 0) {
+                                $html[] = '<div class="outcome">';
+                                $html[] = $day_outcome. "円";
+                                $html[] = '</div>';}
+
+                            }
+                            // foreach($transactions as $transaction) {
+                            //         if ($transaction->date == $day->getDay()) {
+                            //             if ($transaction->amount > 0){
+                            //                 $income += $transaction->amount;
+                            //                 // $html[] = '<div class="income">';
+                            //                 // $html[] = $income;
+                            //             } else{
+                            //                 $outcome += $transaction->amount;
+                            //                 // $html[] = '<div class="outcome">';
+                            //                 // $html[] = $outcome;
+                            //             } 
+                                        // else {
+                                        //     $html[] = '';
+                                        // }
+                            //             $html[] = '<div class="income">';
+                            //             $html[] = $income;
+                            //             $html[] = '</div>';
+                            //             $html[] = '<div class="outcome">';
+                            //             $html[] = $outcome;
+                            //             $html[] = '</div>';
+                            //         }
+                                
+                            // }
                         }
-                    }
+                    $html[] = '</div>'; 
                 $html[] = '</td>';}
             $html[] = '</tr>';
         }
