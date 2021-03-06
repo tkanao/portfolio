@@ -16,7 +16,7 @@ class AccountsTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('user_id');
-            $table->string('balance');
+            $table->integer('balance');
             $table->timestamps();
         });
     }
