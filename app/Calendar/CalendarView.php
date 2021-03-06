@@ -64,7 +64,6 @@ class CalendarView {
                         // $dayがBlanckdayでなければ収支を表示する
                         if(get_class($day) == 'App\Calendar\CalendarWeekDay'){
                             // カレンダーと同じ日のカラムを取得する
-                            // $transactions = Transaction::where('date', $day->getDay())->get();
                             // 収支のデータをカレンダーに表示する
                             $day_incomes = Transaction::where('date', $day->getDay())
                                 ->where('transaction_type', 'income')
@@ -90,29 +89,6 @@ class CalendarView {
                                 $html[] = '</div>';}
 
                             }
-                            // foreach($transactions as $transaction) {
-                            //         if ($transaction->date == $day->getDay()) {
-                            //             if ($transaction->amount > 0){
-                            //                 $income += $transaction->amount;
-                            //                 // $html[] = '<div class="income">';
-                            //                 // $html[] = $income;
-                            //             } else{
-                            //                 $outcome += $transaction->amount;
-                            //                 // $html[] = '<div class="outcome">';
-                            //                 // $html[] = $outcome;
-                            //             } 
-                                        // else {
-                                        //     $html[] = '';
-                                        // }
-                            //             $html[] = '<div class="income">';
-                            //             $html[] = $income;
-                            //             $html[] = '</div>';
-                            //             $html[] = '<div class="outcome">';
-                            //             $html[] = $outcome;
-                            //             $html[] = '</div>';
-                            //         }
-                                
-                            // }
                         }
                     $html[] = '</div>'; 
                 $html[] = '</td>';}

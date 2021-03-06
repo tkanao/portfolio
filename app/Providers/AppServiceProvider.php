@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //HTTPSに設定
+        if (\App::enviroment('production')) {
+            \URL::forceScheme('https');
+        }
     }
 }

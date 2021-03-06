@@ -66,9 +66,15 @@ table {
     height: 40px;
 }
 
-.index table tfoot td {
-    height: 60px;
+
+.index table thead th, .id {
+    border: 2px solid;
 }
+
+.index table tbody td{
+    border: 2px solid;
+}
+
 
 .income {
     color: #004400;
@@ -92,3 +98,15 @@ table {
     font-size: 30px;
     text-align: center;
 }
+
+input.amount {
+    display: inline;
+    width: 80%;
+}
+
+.date {
+    background-color: #AAFFFF;
+    font-weight: bold;
+    /*color: white;*/
+}
+

@@ -47,15 +47,6 @@ class CalendarWeek {
             
             // 今月
             $day = new CalendarWeekDay($tmpDay->copy());
-            // $transaction = Transaction::where('date', $day)->get();
-            // // 収支のデータをカレンダーに表示する
-            // foreach($transaction as $t) {
-            //     if (optional($t->date == $day)) {
-            //         $html[] = $t->memo;
-            //         $html[] = '<br>';
-            //         $html[] = $t->amount;
-            //     }
-            // }
             $days[] = $day;
             // 翌日に移動
             $tmpDay->addDay(1);
