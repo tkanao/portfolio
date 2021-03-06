@@ -33,12 +33,12 @@ class ChangeTransactionsTable extends Migration
     public function down()
     {
         Schema::table('transactions', function(Blueprint $table) {
-            $table->string('amount')->change();
-            $table->string('balance')->change();
-        });
+        //     $table->string('amount')->change();
+        //     $table->string('balance')->change();
+        // });
         
-        Schema::table('accounts', function(Blueprint $table) {
-          $table->string('balance')->change(); 
+        // Schema::table('accounts', function(Blueprint $table) {
+        //   $table->string('balance')->change(); 
         });
         
     }
