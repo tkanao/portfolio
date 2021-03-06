@@ -29,14 +29,11 @@
             <nav class="navbar navbar-expand-md sticky-top navbar-dark bg-info navbar-laravel">
                 <div class="container">
                     <!--後で直す-->
-                    <!--<a class="navbar-brand" href="{{ url('/') }}">-->
-                    <!--    {{ config('app.name', 'Laravel') }}-->
-                    <!--</a>-->
+                    <a class="navbar-brand" href="#">家計簿</a>
                     <button class="navbar-toggler" type="buton" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a class="navbar-brand" href="#">家計簿</a>
-                    <div class="collapse navbar-collapse justify-content-end">
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav4">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="create">カレンダーへ</a>

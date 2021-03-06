@@ -12,6 +12,8 @@
 */
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+    // トップページの表示
+    // Route::get('/', 'Admin\CalendarController@add');
     // CalendarControllerの設定
     Route::get('book/create', 'Admin\CalendarController@add');
     // AccountControllerの設定
@@ -27,3 +29,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::redirect('/', 'admin/book/create');

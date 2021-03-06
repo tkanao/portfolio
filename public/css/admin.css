@@ -110,3 +110,8 @@ input.amount {
     /*color: white;*/
 }
 
+.login-header {
+    font-weight: normal;
+    font-size: 18px;
+    background-color: white;
+}
