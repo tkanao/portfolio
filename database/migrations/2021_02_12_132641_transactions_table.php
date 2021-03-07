@@ -20,6 +20,7 @@ class TransactionsTable extends Migration
             $table->string('transaction_type');
             $table->integer('balance');
             $table->string('memo');
+            $table->date('date');
             $table->timestamps();
         });
     }
