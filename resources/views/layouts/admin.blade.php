@@ -26,9 +26,8 @@
     <body>
         <div id="app">
             <!--ナビゲーションバー-->
-            <nav class="navbar navbar-expand-md sticky-top navbar-dark bg-info navbar-laravel">
+            <nav class="navbar navbar-expand-md navbar-dark bg-info sticky-top">
                 <div class="container">
-                    <!--後で直す-->
                     <a class="navbar-brand" href="#">家計簿</a>
                     <button class="navbar-toggler" type="buton" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>

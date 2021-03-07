@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="login-box card">
-                    <div class="login-header card-header mx-auto login-header">
+                    <div class="login-header card-header login-header">
                         {{ __('messages.Login') }}
                     </div>
                     
@@ -53,10 +53,17 @@
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="mx-auto offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary ml-5">
                                         {{ __('messages.Login') }}
                                     </button>
+                                    <button class="btn btn-success ml-4">
+                                        <a href="{{ route('login.guest') }}" class="text-white">
+                                            ゲストログイン
+                                        </a>
+                                    </button>
                                 </div>
+                                <!--<div class="mx-auto offset-md-4">-->
+                                <!--</div>-->
                             </div>
                         </form>
                     </div>

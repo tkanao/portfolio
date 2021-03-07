@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -35,5 +37,19 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    
+    // ゲストユーザー用のユーザーIDを定数として定義
+    private const GUEST_USER_ID = 2;
+    
+    // ゲストログイン処理
+    public function guestLogin()
+    {
+        // id=2 のゲストユーザー情報がデータベースに存在すれば、ゲストログインする
+        if (Auth::loginUsingId(self::GUEST_USER_ID)) {
+            return redirect('admin/book/create');
+        }
+        
+        return redirect('admin/book/create');
     }
 }
