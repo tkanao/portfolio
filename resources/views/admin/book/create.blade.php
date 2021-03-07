@@ -6,9 +6,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <!--<div class="col-7 float-left">-->
-                    <!--    <h2>今月の収入合計、支出合計</h2>-->
-                    <!--</div>-->
                     <div class="col-4 float-right">
                         <div class="balance">
                             <table width="100%">
