@@ -68,11 +68,11 @@ table {
 
 
 .index table thead th, .id {
-    border: 2px solid;
+    border: 1px solid;
 }
 
 .index table tbody td{
-    border: 2px solid;
+    border: 1px solid;
 }
 
 
@@ -105,13 +105,47 @@ input.amount {
 }
 
 .date {
-    background-color: #AAFFFF;
+    background-color: #CCCCCC;
     font-weight: bold;
-    /*color: white;*/
 }
 
 .login-header {
     font-weight: normal;
     font-size: 18px;
-    /*background-color: #33FFCC!important;*/
+}
+
+.tool{
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+.tool p{
+    margin:0;
+    padding:0;
+}
+.description {
+    display: none;
+    position: absolute;
+    padding: 10px;
+    font-size: 15px;
+    line-height: normal;
+    color: #fff;
+    border-radius: 5px;
+    background: gray;
+    width: 100px;
+}
+.description:before {
+    content: "";
+    position: absolute;
+    top: 0%;
+    right: 95%;
+    border: 15px solid transparent;
+    border-top: 15px solid gray;
+    margin-left: -15px;
+    transform: rotateZ(90deg);
+}
+.tool:hover .description{
+    display: inline-block;
+    top: 0px;
+    left: 80px;
 }

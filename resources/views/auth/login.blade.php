@@ -56,14 +56,14 @@
                                     <button type="submit" class="btn btn-primary ml-5">
                                         {{ __('messages.Login') }}
                                     </button>
-                                    <button class="btn btn-success ml-4">
+                                    <button type="button" class="btn btn-success ml-4">
                                         <a href="{{ route('login.guest') }}" class="text-white">
+                                        <!--<button type="submit" class="btn btn-success ml-4">-->
                                             ゲストログイン
+                                        <!--</button>-->
                                         </a>
                                     </button>
                                 </div>
-                                <!--<div class="mx-auto offset-md-4">-->
-                                <!--</div>-->
                             </div>
                         </form>
                     </div>

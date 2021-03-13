@@ -61,35 +61,45 @@ class CalendarView {
                 $html[] = $day->render();
                 
                     $html[] = '<div class="amount">';
-                        // $dayがBlanckdayでなければ収支を表示する
-                        if(get_class($day) == 'App\Calendar\CalendarWeekDay'){
-                            // カレンダーと同じ日のカラムを取得する
-                            // 収支のデータをカレンダーに表示する
-                            $day_incomes = Transaction::where('date', $day->getDay())
-                                ->where('transaction_type', 'income')
-                                ->orderBy('created_at')->get()
-                                ->pluck('amount')->sum();
+                    
+                            // $dayがBlanckdayでなければ収支を表示する
+                            if(get_class($day) == 'App\Calendar\CalendarWeekDay'){
+                                // カレンダーと同じ日の収入メモをを取得する
+                                $day_incomes = $this->getTransaction($day, 'income');
+                                $day_income_memos = $this->getMemo($day, 'income');
+                                
+                                // カレンダーと同じ日の支出メモをを取得する
+                                $day_outcomes = $this->getTransaction($day, 'outcome');
+                                $day_outcome_memos = $this->getMemo($day, 'outcome');
+                                
+                                foreach((array)$day_incomes as $day_income) {
+                                    if ($day_income !== 0) {
+                                    $html[] = '<div class="income tool">';
+                                        $html[] = $day_income. "円";
+                                            $html[] = '<div class="description">';
+                                                foreach($day_income_memos as $day_income_memo) {
+                                                    if ($day_income !== 0) {
+                                                    $html[] = $day_income_memo->memo .'<br>';}
+                                                }
+                                            $html[] = '</div>';
+                                    $html[] = '</div>';}
+                                }
 
-                            $day_outcomes = Transaction::where('date', $day->getDay())
-                                ->where('transaction_type', 'outcome')
-                                ->orderBy('created_at')->get()
-                                ->pluck('amount')->sum();
-                            
-                            foreach((array)$day_incomes as $day_income) {
-                                if ($day_income !== 0) {
-                                $html[] = '<div class="income">';
-                                $html[] = $day_income. "円";
-                                $html[] = '</div>';}
+                                foreach((array)$day_outcomes as $day_outcome) {
+                                    if ($day_outcome !== 0) {
+                                    $html[] = '<div class="outcome tool">';
+                                    $html[] = $day_outcome. "円";
+                                        $html[] = '<div class="description">';
+                                            foreach($day_outcome_memos as $day_outcome_memo) {
+                                                if ($day_outcome !== 0) {
+                                                $html[] = $day_outcome_memo->memo. '<br>';}
+                                            }
+                                        $html[] = '</div>';
+                                    $html[] = '</div>';}
+                                }
+                                
                             }
                             
-                            foreach((array)$day_outcomes as $day_outcome) {
-                                if ($day_outcome !== 0) {
-                                $html[] = '<div class="outcome">';
-                                $html[] = $day_outcome. "円";
-                                $html[] = '</div>';}
-
-                            }
-                        }
                     $html[] = '</div>'; 
                 $html[] = '</td>';}
             $html[] = '</tr>';
@@ -103,6 +113,30 @@ class CalendarView {
         return implode("", $html);
     }    
     
+    private function getTransaction($day, $transactionType) {
+        return Transaction::where('date', $day->getDay())
+            ->where('transaction_type', $transactionType)
+            ->orderBy('created_at')->get()
+            ->pluck('amount')->sum();
+    }
+    
+    private function getMemo($day, $transactionType) {
+        return Transaction::where('date', $day->getDay())
+            ->where('transaction_type', $transactionType)
+            ->orderBy('created_at')->get();
+    }
+    
+                            // $day_incomes = Transaction::where('date', $day->getDay())
+                            //     ->where('transaction_type', 'income')
+                            //     ->orderBy('created_at')->get()
+                            //     ->pluck('amount')->sum();
+
+                            // $day_outcomes = Transaction::where('date', $day->getDay())
+                            //     ->where('transaction_type', 'outcome')
+                            //     ->orderBy('created_at')->get()
+                            //     ->pluck('amount')->sum();
+                            
+
     // 週の情報を取得する関数を作成
     protected function getWeeks(){
         $weeks = [];

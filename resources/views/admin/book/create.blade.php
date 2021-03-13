@@ -38,9 +38,5 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-10 mx-auto mt-4">
-                </div>
-            </div>
         </div>
 @endsection

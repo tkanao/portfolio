@@ -49,14 +49,11 @@
         <div class="row">
             <div class="col-md-8 col-10 mt-4 mx-auto text-center">
                 <div class="row index">
-                    <table border="3" width="100%">
+                    <table border="2" width="100%">
                         <thead rules="box">
                             <tr>
                                 <th width="10%">登録順</th>
                                 <th width="90%" colspan="2">明細</th>
-                                <!--<th width="22%">項目</th>-->
-                                <!--<th width="22%">金額</th>-->
-                                <!--<th width="22%">残高</th>-->
                             </tr>
                         </thead>
                         <tbody>
