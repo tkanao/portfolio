@@ -95,15 +95,15 @@ class AccountController extends Controller
             $monthly_total = null;
             $monthly_income = null;
             $monthly_outcome = null;
-            $memos = null;
-            $amounts = null;
+            $memo = null;
+            $amount = null;
         }
 
         // 月毎のデータを取り出す
         // $memos = $posts->memo;
         // $amounts = - $posts->amount;
         return view('admin.book.index', ['posts' => $posts, 'cond_date' => $cond_date, 'monthly_total' => $monthly_total, 'monthly_income' => $monthly_income, 
-        'monthly_outcome' => $monthly_outcome, 'memo' => $memo, 'amounts' => $amounts, 'amount' => $amount,]);
+        'monthly_outcome' => $monthly_outcome, 'memo' => $memo, 'amount' => $amount,]);
     }
     
 
