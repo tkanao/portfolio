@@ -7,9 +7,10 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
         <title>@yield('title')</title>
-        <!--Laravelで標準で用意されているJavascriptを読み込む-->
-        <script src="{{ secure_asset('js/app.js') }}" defer></script>
-        
+        <!--chart.jsの読み込み-->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+        <script src="https://unpkg.com/chartjs-plugin-colorschemes"></script>
+
         <!--Fonts-->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">

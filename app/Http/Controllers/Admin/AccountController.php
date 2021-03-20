@@ -46,6 +46,35 @@ class AccountController extends Controller
             $posts = Transaction::where('date', 'like', $cond_date . '%')->orderBy('created_at')->get();
             unset($posts['_token']);
             
+            $all_outcome = Transaction::where('date', 'like', $cond_date . '%')
+                  ->where('transaction_type', 'outcome')->orderBy('created_at')->select('memo', 'amount')->get();
+
+            $all_memos = Transaction::where('date', 'like', $cond_date . '%')
+                   ->where('transaction_type', 'outcome')->orderBy('created_at')->get()->pluck('memo');
+            $memos = array();
+                foreach($all_memos as $str){
+                    if(!in_array($str, $memos)){
+                        $memos[] = $str;
+                    }
+                }
+                    foreach($memos as $value){
+                    	$num = 0;
+                    	foreach($all_outcome as $row){
+                    		if($row['memo']==$value){
+                    			$num = $num+$row['amount'];
+                    		}
+                    	}
+                    	$amounts[$value] = $num;
+                    }
+                    
+                    $amount = array();
+                    $memo = array();
+                    
+                    foreach($amounts as $key => $value){
+                        $amount[] = $value;
+                        $memo[] = $key;
+                    }
+                    
             $monthly_income = Transaction::where('date', 'like', $cond_date . '%')
                             ->where('transaction_type', 'income')
                             ->orderBy('created_at')->get()
@@ -66,10 +95,15 @@ class AccountController extends Controller
             $monthly_total = null;
             $monthly_income = null;
             $monthly_outcome = null;
-        //     // $posts = Transaction::all();
-        //     // $monthly_total = Transaction::all()->pluck('amount')->sum();
+            $memos = null;
+            $amounts = null;
         }
-        return view('admin.book.index', ['posts' => $posts, 'cond_date' => $cond_date, 'monthly_total' => $monthly_total, 'monthly_income' => $monthly_income, 'monthly_outcome' => $monthly_outcome]);
+
+        // 月毎のデータを取り出す
+        // $memos = $posts->memo;
+        // $amounts = - $posts->amount;
+        return view('admin.book.index', ['posts' => $posts, 'cond_date' => $cond_date, 'monthly_total' => $monthly_total, 'monthly_income' => $monthly_income, 
+        'monthly_outcome' => $monthly_outcome, 'memo' => $memo, 'amounts' => $amounts, 'amount' => $amount,]);
     }
     
 

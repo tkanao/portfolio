@@ -20,6 +20,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('book/index', 'Admin\AccountController@index');
 });
 
+Route::get('ajax/chart', 'Ajax\ChartController@index');
+Route::get('ajax/chart/months', 'Ajax\ChartController@months');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

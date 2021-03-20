@@ -24,8 +24,38 @@
             </div>
         </form>
         <!--表示画面-->
-        <div class="row total mt-3">
-            <div class="col-10 mt-4 mx-auto text-center">
+        <div class="row">
+        <div class="col-md-6 mx-auto">
+        <canvas id="myChart" width="200" height="200"></canvas>
+            <script>
+                // ラベル
+                var labels = @json($memo);
+                var amount = @json($amount);
+                
+            	var ctx = document.getElementById('myChart').getContext('2d');
+            	var chart = new Chart(ctx, {
+            		type: 'pie',
+            		data: {
+            			labels: labels,
+            			datasets: [{
+            				label: 'マイグラフ',
+            				data: amount,
+            			}]
+            		},
+            		options: {
+            	        plugins: {
+                            colorschemes: {
+                                scheme: 'tableau.Tableau20'
+                            }
+                        }
+                            		}
+            	});	
+           </script>        
+            
+        </div>
+        </div>
+        <div class="total mt-3">
+            <div class="col-lg-10 col-md-6 mt-4 mx-auto text-center">
                 <table border="1" width="100%">
                     <thead>
                         <tr>
