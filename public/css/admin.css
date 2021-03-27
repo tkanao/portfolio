@@ -43,8 +43,8 @@ body {
     width: 14% !important;
 }
 
-.holiday {
-    color: red;
+.holiday .day{
+    color: red !important;
     font-weight: bold;
 }
 

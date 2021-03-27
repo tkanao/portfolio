@@ -58,9 +58,7 @@
                                     </button>
                                     <button type="button" class="btn btn-success ml-4">
                                         <a href="{{ route('login.guest') }}" class="text-white">
-                                        <!--<button type="submit" class="btn btn-success ml-4">-->
                                             ゲストログイン
-                                        <!--</button>-->
                                         </a>
                                     </button>
                                 </div>

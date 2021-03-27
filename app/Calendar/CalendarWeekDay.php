@@ -7,7 +7,8 @@ class CalendarWeekDay {
     protected $carbon;
     private $holidays = null;
     protected $isHoliday = false;
-    
+
+
     function __construct($date){
         $this->carbon = new Carbon($date);
         $year = $this->carbon->format("Y");
@@ -25,6 +26,7 @@ class CalendarWeekDay {
         // 祝日ならばholidayを与える
         if($this->isHoliday($this->carbon)){
             $classNames[] = "holiday";
+            
         }
         // 今日ならばtodayを与える
         if ($this->carbon->isToday()){
@@ -34,8 +36,28 @@ class CalendarWeekDay {
     
        return implode(" ", $classNames);
     }
+    
+    // function getHolidayNames(){
+    //     if(!$this->holidays)return false;
+    //     foreach($this->holidays as $holiday){
+    //     }
+    //             dd($this->holidays);
+
+    //     return $holiday->getName();
+    // }
+    
     function render(){
-        return '<p class="day">' . $this->carbon->format("j"). '</p>';
+        if($this->isHoliday($this->carbon)){
+            foreach($this->holidays as $holiday){
+                if($this->carbon->format("Y-m-d") == $holiday){
+            $holidayName = $holiday->getName();
+                }
+            }
+        }else{
+            $holidayName = null;
+        }
+
+        return '<p class="day">' . $this->carbon->format("j") ." ". $holidayName.'</p>';
     }
     
     function getDay(){

@@ -2,7 +2,6 @@
 namespace App\Calendar;
 
 use Carbon\Carbon;
-// Yasumiを使う
 use Yasumi\Yasumi;
 use App\Transaction;
 use App\Calendar\CalendarWeekDay;
@@ -126,17 +125,6 @@ class CalendarView {
             ->orderBy('created_at')->get();
     }
     
-                            // $day_incomes = Transaction::where('date', $day->getDay())
-                            //     ->where('transaction_type', 'income')
-                            //     ->orderBy('created_at')->get()
-                            //     ->pluck('amount')->sum();
-
-                            // $day_outcomes = Transaction::where('date', $day->getDay())
-                            //     ->where('transaction_type', 'outcome')
-                            //     ->orderBy('created_at')->get()
-                            //     ->pluck('amount')->sum();
-                            
-
     // 週の情報を取得する関数を作成
     protected function getWeeks(){
         $weeks = [];
