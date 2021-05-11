@@ -8,7 +8,6 @@ class CalendarWeekDay {
     private $holidays = null;
     protected $isHoliday = false;
 
-
     function __construct($date){
         $this->carbon = new Carbon($date);
         $year = $this->carbon->format("Y");
@@ -36,15 +35,6 @@ class CalendarWeekDay {
     
        return implode(" ", $classNames);
     }
-    
-    // function getHolidayNames(){
-    //     if(!$this->holidays)return false;
-    //     foreach($this->holidays as $holiday){
-    //     }
-    //             dd($this->holidays);
-
-    //     return $holiday->getName();
-    // }
     
     function render(){
         if($this->isHoliday($this->carbon)){

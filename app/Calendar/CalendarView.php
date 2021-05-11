@@ -66,7 +66,6 @@ class CalendarView {
                                 // カレンダーと同じ日の収入メモをを取得する
                                 $day_incomes = $this->getTransaction($day, 'income');
                                 $day_income_memos = $this->getMemo($day, 'income');
-                                
                                 // カレンダーと同じ日の支出メモをを取得する
                                 $day_outcomes = $this->getTransaction($day, 'outcome');
                                 $day_outcome_memos = $this->getMemo($day, 'outcome');
